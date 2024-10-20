@@ -5,7 +5,7 @@ from .models import Category, Project, Attachement
 class AttachmentInline(admin.StackedInline):
     model = Attachement
     raw_id_fields = ('project',)
-    max_num =1
+    max_num =2
 
 
 @admin.register(Category)
