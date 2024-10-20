@@ -9,4 +9,21 @@
 
 {% block content %}
   <h1>{% trans "Projects" %}</h1>
+  <div class="container">
+    <div class="row">
+      {% for project in projects %}
+      <div class="col-md-6">
+      {{ project.title }}
+      {{project.attachments.all}}
+        {% if project.attachments.all %}
+        {% for attach in project.attachments.all %}
+          <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">
+          
+        {% endfor %}
+        {% endif %}
+      </div>
+      {% endfor %}
+        
+    </div>
+  </div>
 {% endblock content %}
