@@ -10,10 +10,10 @@
             <a class="nav-link {% if nav == 'home' %}active{% endif %}" aria-current="page" href="{% url 'generals:home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if nav == 'projects' %}active{% endif %}" href="#">Projects</a>
+            <a class="nav-link {% if nav == 'projects' %}active{% endif %}" href="{% url 'projects:projects' %}">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if nav == 'about' %}active{% endif %}" href="#">About me</a>
+            <a class="nav-link {% if nav == 'about' %}active{% endif %}" href="{% url 'generals:about' %}">About me</a>
           </li>
           {% comment %}            
           <li class="nav-item dropdown">
