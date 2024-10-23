@@ -4,8 +4,8 @@ from .models import Category, Project, Attachement
 
 class AttachmentInline(admin.StackedInline):
     model = Attachement
-    raw_id_fields = ('project',)
-    max_num =2
+    raw_id_fields = ('project',)    
+    extra = 1   
 
 
 @admin.register(Category)
@@ -21,5 +21,5 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Attachement)
 class AttachementAdmin(admin.ModelAdmin):
-    list_display = ['id', 'attach_type', 'attachment_order', 'cover']
+    list_display = ['id', 'project', 'attach_type', 'attachment_order', 'cover']
     list_editable =['cover', 'attachment_order']

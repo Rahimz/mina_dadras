@@ -13,15 +13,15 @@
     <div class="row">      
         <div class="col-md-12">      
         {% for attach in project.attachments.all %}        
-        <div>
-            {% if attach.attach_type == 'image' %}
-            <img src="{{ attach.file.url }}" alt="">
-            {% endif %}
-        </div>
-            {% if attach.attach_type == 'text' %}
-            <p>{{ attach.text | linebreaksbr }}</p>
-            {% endif %}
-        </div>
+            <div class="mt-4">
+                {% if attach.attach_type == 'image' %}
+                <img src="{{ attach.file.url }}" alt="">
+                {% endif %}
+            
+                {% if attach.attach_type == 'text' %}
+                <p>{{ attach.text | linebreaksbr }}</p>
+                {% endif %}
+            </div>
         {% endfor %}
         </div>
     </div>

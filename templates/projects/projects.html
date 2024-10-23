@@ -12,14 +12,18 @@
   <div class="container">
     <div class="row">
       {% for project in projects %}
-      <div class="col-md-6">
-      <a href="{% url 'projects:project_details' project.slug %}">
-        {{ project.title }}
-      </a>      
+      <div class="col-md-6 my-2">            
         {% if project.attachments.all %}
         {% for attach in project.attachments.all %}
           {% if attach.attach_type == 'image' and attach.cover %}
-          <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">            
+          <a href="{% url 'projects:project_details' project.slug %}">
+            <div class="image-container">
+              <img src="{{ attach.file.url }}" alt="" class="project-image" width="100%">
+              <div class="overlay">
+                <div class="text">{{ project.title }}</div>
+              </div>
+            </div>
+          </a>            
           {% endif %}
           
         {% endfor %}
