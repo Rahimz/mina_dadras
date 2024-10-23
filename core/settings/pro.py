@@ -6,7 +6,7 @@ SECRET_KEY = pro_secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['minadadras.com', 'www.minadadras.com', server_ip]
+ALLOWED_HOSTS = ['minadadras.com', 'www.minadadras.com']
 
 DATABASES = {
     'default': {
@@ -18,3 +18,8 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://minadadras.com',
+    'https://www.minadadras.com',
+]
