@@ -6,7 +6,7 @@ from projects.models import Attachement, Category
 
 
 def HomeView(request):
-    # attachments = Attachement.objects.filter(cover=True)
+    attachments = Attachement.objects.filter(cover=True)
     categories = Category.objects.filter(parent__isnull=True).prefetch_related(Prefetch('projects__attachments', queryset=attachments))
     context = dict(
         page_title=_("Home"),
