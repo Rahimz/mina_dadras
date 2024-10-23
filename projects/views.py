@@ -4,15 +4,19 @@ from django.utils.translation import gettext_lazy as _
 from .models import Project
 
 def ProjectsView(request):
+    url = 'projects/projects.html'
+    
     projects = Project.objects.all()
     context = dict(
         page_title=_("projects"),
         nav='projects',
         projects=projects,
     )
+    if not request.user.is_authenticated:
+        url = 'generals/construction.html'
     return render (
         request,
-        'projects/projects.html',
+        url,
         context
     )
 
