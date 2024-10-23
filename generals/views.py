@@ -6,12 +6,12 @@ from projects.models import Attachement, Category
 
 
 def HomeView(request):
-    attachments = Attachement.objects.filter(cover=True)
-    categories = Category.objects.prefetch_related(Prefetch('prjects__attachments', queryset=attachments))
+    # attachments = Attachement.objects.filter(cover=True)
+    categories = Category.objects.filter(parent__isnull=True).prefetch_related(Prefetch('projects__attachments', queryset=attachments))
     context = dict(
         page_title=_("Home"),
         nav='home',
-        attachments=attachments,
+        # attachments=attachments,
         categories=categories,
     )
     return render (
