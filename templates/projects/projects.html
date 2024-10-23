@@ -8,26 +8,25 @@
 
 
 {% block content %}
-  <h1>{% trans "Projects" %}</h1>
-  <div class="container">
+<div class="container">
+    <h1>{% trans "Projects" %}</h1>
     <div class="row">
       {% for project in projects %}
-      <div class="col-md-6 my-2">            
-        {% if project.attachments.all %}
-        {% for attach in project.attachments.all %}
-          {% if attach.attach_type == 'image' and attach.cover %}
-          <a href="{% url 'projects:project_details' project.slug %}">
-            <div class="image-container">
-              <img src="{{ attach.file.url }}" alt="" class="project-image" width="100%">
-              <div class="overlay">
-                <div class="text">{{ project.title }}</div>
-              </div>
+      <div class="col-md-6 my-2">
+        <a href="{% url 'projects:project_details' project.slug %}" class="text-decoration-none">
+          {% if project.get_cover_attachment %}
+          <div class="image-container">
+            <img src="{{ project.get_cover_attachment.file.url }}" alt="" class="project-image" width="100%">              
+            <div class="overlay">
+              <div class="text">{{ project.title }}</div>
             </div>
-          </a>            
+          </div>
+          {% else %}
+          <div class="d-flex align-items-center justify-content-center text-dark h1 text-center" style="height: 400px;">
+            {{ project.title }}
+          </div>
           {% endif %}
-          
-        {% endfor %}
-        {% endif %}
+        </a>
       </div>
       {% endfor %}
         

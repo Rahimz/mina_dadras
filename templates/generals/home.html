@@ -8,5 +8,23 @@
 
 
 {% block content %}
-<h1>{% trans "Home" %}</h1>
+<div class="container">
+    <h1>{% trans "Home" %}</h1>
+    <div class="row">     
+        {% for attach in attachments %}
+      <div class="col-md-6 my-2">   
+          {% if attach.attach_type == 'image' and attach.cover and attach.project %}
+            <a href="{% url 'projects:project_details' attach.project.slug %}">
+                <div class="image-container">
+                    <img src="{{ attach.file.url }}" alt="" class="project-image" width="100%">
+                    <div class="overlay">
+                    <div class="text">{{ attach.project.title }}</div>
+                    </div>
+                </div>            
+            </a>            
+          {% endif %}          
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}

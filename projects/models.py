@@ -59,7 +59,9 @@ class Project(TimeStampedModel):
 
     def __str__(self):
         return self.title
-    
+
+    def get_cover_attachment(self):
+        return self.attachments.all().filter(cover=True, attach_type=Attachement.AttachType.IMAGE).last() or None
 
 class Attachement(TimeStampedModel):    
     class AttachType(models.TextChoices):
