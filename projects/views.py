@@ -12,8 +12,8 @@ def ProjectsView(request):
         nav='projects',
         projects=projects,
     )
-    if not request.user.is_authenticated:
-        url = 'generals/construction.html'
+    # if not request.user.is_authenticated:
+    #     url = 'generals/construction.html'
     return render (
         request,
         url,

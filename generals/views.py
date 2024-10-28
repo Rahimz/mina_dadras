@@ -22,8 +22,8 @@ def HomeView(request):
         # attachments=attachments,
         categories=categories,
     )
-    if not request.user.is_authenticated:
-        url = 'generals/construction.html'
+    # if not request.user.is_authenticated:
+    #     url = 'generals/construction.html'
     return render (
         request,
         url,
