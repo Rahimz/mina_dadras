@@ -3,27 +3,63 @@
 {% load static i18n %}
 
 {% block title %}
-{{ page_title }}  
+{{ page_title }}
 {% endblock title %}
 
 
 {% block content %}
-  <h1>{{ project.title }}</h1>
-  <div class="container">
-    <div class="row">      
-        <div class="col-md-12">      
-        {% for attach in project.attachments.all %}        
-            <div class="mt-4">
-                {% if attach.attach_type == 'image' %}
-                <img src="{{ attach.file.url }}" alt="">
-                {% endif %}
-            
-                {% if attach.attach_type == 'text' %}
-                <p>{{ attach.text | linebreaksbr }}</p>
-                {% endif %}
-            </div>
-        {% endfor %}
-        </div>
+<div class="container">
+  <div class="row my-5">
+    <h1>{{ project.title }}</h1>
+    {% for attach in project.attachments.all %}
+    {% if project.type == 'image' %}
+    <div class="col-md-6">
+      {% include "projects/_show_attachment.html" %}
     </div>
+    
+    {% else %}
+    <div class="col-md-12">
+      <div class="mt-4">
+        {% if attach.attach_type == 'image' %}
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal{{ attach.id }}">
+          <img src="{{ attach.file.url }}" alt="" width="300px" height="auto">
+        </button>
+        {% else %}
+        {% include "projects/_show_attachment.html" %}
+        {% endif %}
+        
+        
+        
+      </div>
+    </div>
+    {% endif %}
+
+    {% if attach.file and attach.attach_type == 'image' %}      
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal{{ attach.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{ attach.title }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">
+            {% if attach.text %}              
+            <p>{{ attach.text }}</p>
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% endfor %}
   </div>
+</div>
+
 {% endblock content %}

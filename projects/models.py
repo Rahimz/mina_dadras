@@ -33,6 +33,10 @@ class Category(TimeStampedModel):
 
 
 class Project(TimeStampedModel):
+    class Type(models.TextChoices):
+        IMAGE = 'image', _("Image gallery")
+        MIX = 'mix', _("Mix content")
+        
     title = models.CharField(
         _("Title"),
         max_length=150,
@@ -40,6 +44,12 @@ class Project(TimeStampedModel):
     slug = models.SlugField(
         _("Slug"),
         allow_unicode=True,
+    )
+    type = models.CharField(
+        _("Type"),
+        max_length=10,
+        default=Type.IMAGE,
+        choices=Type.choices,
     )
     uuid = models.UUIDField(
         default=uuid.uuid4, 
@@ -52,6 +62,7 @@ class Project(TimeStampedModel):
         related_name='projects',
         on_delete=models.PROTECT,        
     )
+    
 
     class Meta:
         verbose_name = _("Project")

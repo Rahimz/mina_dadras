@@ -1,0 +1,23 @@
+{% if attach.attach_type == 'image' %}
+<div class="image-container">
+    <button type="button" class="btn btn-link project-image" data-bs-toggle="modal"
+        data-bs-target="#exampleModal{{ attach.id }}">
+        <img src="{{ attach.file.url }}" alt="" class="project-image" width="100%">
+    </button>
+</div>
+
+{% elif attach.attach_type == 'video_file' %}
+<div class="image-container">
+    {% if attach.file %}
+    <video muted controls class="project-image">
+        <source src="{{ attach.file.url }}" type="video/mp4">
+        <source src="{{ attach.file.url }}" type="video/ogg">
+        <source src="{{ attach.file.url }}" type="video/mkv">
+        <source src="{{ attach.file.url }}" type="video/mov">
+    </video>
+    {% endif %}
+</div>
+
+{% elif attach.attach_type == 'text' %}
+<p>{{ attach.text | linebreaksbr }}</p>
+{% endif %}
