@@ -11,7 +11,7 @@
 <div class="container">    
   <div class="row my-5">
       {% for category in categories %}
-      <h2 class="h2">{{ category }}</h2>
+      <h2 class="h2"><a href="{{ category.get_absolute_url}}" class="black-link">{{ category }}</a></h2>
           {% for project in category.projects.all %}
               {% for attach in project.attachments.all %}
               <div class="col-md-6 my-2">

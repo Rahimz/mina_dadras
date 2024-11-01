@@ -32,13 +32,28 @@ def ProjectsView(request):
 
 def ProjectDetailsView(request, slug):
     project = get_object_or_404(Project, slug=slug)
+    
     context = dict(
-        page_title=_("projects"),
+        page_title=_("Projects"),
         nav='projects',
         project=project,
     )
     return render (
         request,
         'projects/project.html',
+        context
+    )
+
+def ProjectCategoriesView(request, slug):
+    category = Category.objects.filter(slug=slug)
+    
+    context = dict(
+        page_title=_("Category"),
+        nav='projects',
+        categories=category,
+    )
+    return render (
+        request,
+        'projects/projects.html',
         context
     )

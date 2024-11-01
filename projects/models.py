@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 import uuid 
+from django.urls import reverse
 
 from tools.models import TimeStampedModel
 
@@ -30,7 +31,9 @@ class Category(TimeStampedModel):
     def __str__(self):
         return self.name
     
-
+    def get_absolute_url(self):
+        return reverse("projects:category_details", kwargs={"slug": self.slug})
+    
 
 class Project(TimeStampedModel):
     class Type(models.TextChoices):
@@ -73,6 +76,9 @@ class Project(TimeStampedModel):
 
     def get_cover_attachment(self):
         return self.attachments.all().filter(cover=True, attach_type=Attachement.AttachType.IMAGE).last() or None
+    
+    def get_absolute_url(self):
+        return reverse("projects:project_details", kwargs={"slug": self.slug})
 
 class Attachement(TimeStampedModel):    
     class AttachType(models.TextChoices):

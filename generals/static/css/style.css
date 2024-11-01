@@ -62,3 +62,12 @@ body {
     outline: none; /* Remove outline on focus */
     text-decoration: none; /* Ensure no underline on hover */
 }
+
+.black-link {
+    color: black;
+    text-decoration: none; /* Optional: to remove underline */
+}
+
+.black-link:hover {
+    color: darkgray; /* Optional: change color on hover */
+}
