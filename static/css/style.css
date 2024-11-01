@@ -8,13 +8,21 @@ body {
 .image-container {
     position: relative; /* Position relative to contain the overlay */
     overflow: hidden; /* Hide overflow */
+    height: 400px; /* Set a fixed height */
 }
 
-.project-image {
-    height: 400px; /* Set a fixed height */
+.project-image {    
     object-fit: cover; /* Ensures the image covers the area without stretching */
     width: 100%; /* Ensures the image takes the full width of the column */
+    height: 100%; /* Set height to 100% of the container */
 }
+
+.video {
+    object-fit: contain; /* For videos, use contain to show the entire video */
+    height: 100%; /* Set height to 100% of the container */
+    width: 100%; /* Ensures the video takes the full width of the column */
+}
+
 
 .overlay {
     position: absolute; /* Position overlay absolutely within the container */
@@ -39,4 +47,18 @@ body {
     font-size: 2.5rem; /* Font size */
     text-align: center; /* Center text */
     font-weight: 600;
+}
+
+.btn-link {
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    border: none; /* Remove border */
+    background: none; /* Remove background */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Make the button a block element to fill the container */
+}
+
+.btn-link:focus, .btn-link:hover {
+    outline: none; /* Remove outline on focus */
+    text-decoration: none; /* Ensure no underline on hover */
 }

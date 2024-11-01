@@ -9,7 +9,7 @@
 {% elif attach.attach_type == 'video_file' %}
 <div class="image-container">
     {% if attach.file %}
-    <video muted controls class="project-image">
+    <video muted controls class="video">
         <source src="{{ attach.file.url }}" type="video/mp4">
         <source src="{{ attach.file.url }}" type="video/ogg">
         <source src="{{ attach.file.url }}" type="video/mkv">
