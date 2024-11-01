@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models import Prefetch, Count
 
 from projects.models import Project
+from .models import About, Social
 
 
 def HomeView(request):
@@ -25,9 +26,13 @@ def HomeView(request):
 
 
 def AboutView(request):
+    about = About.objects.all().last()
+    socials = Social.objects.all()
     context = dict(
         page_title=_("About me"),
-        nav='about'
+        nav='about',
+        about=about,
+        socials=socials
     )
     return render (
         request,

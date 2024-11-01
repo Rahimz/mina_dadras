@@ -3,7 +3,7 @@
 {% load static i18n %}
 
 {% block title %}
-{{ page_title }}  
+{{ page_title }}
 {% endblock title %}
 
 
@@ -12,17 +12,19 @@
   <div class="row my-5">
     <div class="row">
       <div class="col-md-4">
-        <img src="{% static 'images/mina_dadras.jpg' %}" alt="mina dadras" width="100%" height="auto">
+        <img src="{{ about.image.url }}" alt="mina dadras" width="100%" height="auto">
       </div>
       <div class="col-md-8">
-        <h1>{% trans "About me" %}</h1>
-        <p>
-          My name is Mina
-          I am a strategically minded Designer based in Iran. 
-          <br>
-          With over 10 years of experience, my passion is in creating and building brands for companies I believe in. I’ve been lucky enough to work with a wide range of clients from small startups, and established businesses.
-          I love developing brands and am always on the lookout for new projects and inspiring people to collaborate with. Get in touch for a talk, I’d love to hear from you.
-        </p>
+        {% if about %}
+        <p>{{ about.about | safe | linebreaksbr }}</p>
+        {% endif %}
+        <div class="mt-5">
+          {% for social in socials %}
+          <a href="{{ social.url }}" class="black-link me-3">
+            <img src="{{ social.image.url }}" alt="{{ social.name }}" width="40px" height="auto">
+          </a>
+          {% endfor %}
+        </div>
 
       </div>
     </div>
