@@ -1,16 +1,25 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Prefetch, Count
 
-from .models import Project
+from .models import Attachement, Category, Project
 
 def ProjectsView(request):
     url = 'projects/projects.html'
     
-    projects = Project.objects.all()
+    attachments = Attachement.objects.filter(cover=True)
+    categories = (
+        Category.objects
+        .filter(parent__isnull=True)
+        .annotate(project_count=Count('projects'))
+        .filter(project_count__gt=0)
+        .prefetch_related(Prefetch('projects__attachments', queryset=attachments))
+    ) 
+    
     context = dict(
         page_title=_("projects"),
         nav='projects',
-        projects=projects,
+        categories=categories,
     )
     # if not request.user.is_authenticated:
     #     url = 'generals/construction.html'
