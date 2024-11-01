@@ -11,8 +11,8 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <a class="black-link" href="{% url 'projects:projects' %}">{% trans "Projects" %}</a> / 
-      <a class="black-link" href="{{ project.category.get_absolute_url }}">{{ project.category }}</a> / 
+      <a class="black-link" href="{% url 'projects:projects' %}">{% trans "Projects" %}</a> /
+      <a class="black-link" href="{{ project.category.get_absolute_url }}">{{ project.category }}</a> /
       <span class="text-muted">{{ project.title }}</span>
     </div>
   </div>
@@ -20,31 +20,29 @@
     <h1>{{ project.title }}</h1>
     {% for attach in project.attachments.all %}
     {% if project.type == 'image' %}
-    <div class="col-md-6">
+    <div class="col-md-6 my-2">
       {% include "projects/_show_attachment.html" %}
     </div>
-    
+
     {% else %}
     <div class="col-md-12">
+      {% if attach.attach_type == 'image' %}
       <div class="mt-4">
-        {% if attach.attach_type == 'image' %}
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal{{ attach.id }}">
           <img src="{{ attach.file.url }}" alt="" width="300px" height="auto">
         </button>
-        {% else %}
-        {% include "projects/_show_attachment.html" %}
-        {% endif %}
-        
-        
-        
       </div>
+      {% else %}
+        s{% include "projects/_show_attachment.html" %}
+      {% endif %}
     </div>
     {% endif %}
 
-    {% if attach.file and attach.attach_type == 'image' %}      
+    {% if attach.file and attach.attach_type == 'image' %}
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal{{ attach.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal{{ attach.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -53,7 +51,7 @@
           </div>
           <div class="modal-body text-center">
             <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">
-            {% if attach.text %}              
+            {% if attach.text %}
             <p>{{ attach.text }}</p>
             {% endif %}
           </div>
