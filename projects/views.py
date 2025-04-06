@@ -52,8 +52,19 @@ def ProjectDetailsView(request, slug):
     )
 
 def ProjectCategoriesView(request, slug):
-    category = Category.objects.filter(slug=slug).annotate(
-        active_projects_count=Count('projects', filter=Q(projects__active=True)))
+    active_projects = Project.objects.filter(active=True)
+    attachments = Attachement.objects.filter(cover=True)
+    category = Category.objects.filter(slug=slug
+        ).annotate(project_count=Count('projects', filter=Q(projects__active=True))
+                   ).filter(project_count__gt=0
+                            ).prefetch_related(
+            Prefetch(
+                'projects',
+                queryset=active_projects.prefetch_related(
+                    Prefetch('attachments', queryset=attachments)
+                )
+            )
+            )
     
     context = dict(
         page_title=_("Category"),
