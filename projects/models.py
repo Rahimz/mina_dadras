@@ -66,7 +66,9 @@ class Project(TimeStampedModel):
         related_name='projects',
         on_delete=models.PROTECT,        
     )
-    
+    active = models.BooleanField(
+        default=True
+    )
 
     class Meta:
         verbose_name = _("Project")

@@ -15,7 +15,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'category']
+    list_display = ['id', 'title', 'category', 'active']
     inlines = [AttachmentInline,]
 
 
