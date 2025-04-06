@@ -21,5 +21,5 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Attachement)
 class AttachementAdmin(admin.ModelAdmin):
-    list_display = ['id', 'project', 'attach_type', 'attachment_order', 'cover']
+    list_display = ['id', 'title', 'project', 'attach_type', 'attachment_order', 'cover']
     list_editable =['cover', 'attachment_order']
