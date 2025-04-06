@@ -7,7 +7,7 @@
 </div>
 
 {% elif attach.attach_type == 'video_file' %}
-<div class="image-container">
+<div class="image-container mt-4">
     {% if attach.file %}
     <video muted controls class="video">
         <source src="{{ attach.file.url }}" type="video/mp4">
@@ -18,8 +18,19 @@
     {% endif %}
 </div>
 
-{% elif attach.attach_type == 'title' %}
-    <h2 style="color: {{attach.color}}; background-color:{{ attach.background_color}}">{{ attach.title }}</h2>    
-{% elif attach.attach_type == 'text' %}
-    <p style="color: {{attach.color}}; background-color:{{ attach.background_color}}">{{ attach.text | linebreaksbr }}</p>    
-{% endif %}
+    {% elif attach.attach_type == 'title' %}
+    <div class="mt-4  w-100">
+        <h2 class="text-start" style="color: {{attach.color}}; background-color:{{ attach.background_color}}">{{ attach.title }}</h2>    
+    </div>
+        
+    {% elif attach.attach_type == 'text' %}
+    <div class="mt-4" style="color: {{attach.color}}; background-color:{{ attach.background_color}}">
+        <p>{{ attach.text | safe | linebreaksbr }}</p>    
+    </div>
+    
+    {% elif attach.attach_type == 'quote' %}
+    <div class="quote mt-4" style="color: {{attach.color}}; background-color:{{ attach.background_color}}">
+        <h3>{{ attach.title }}</h3>    
+        <p>{{ attach.text | safe | linebreaksbr }}</p>    
+    </div>
+    {% endif %}

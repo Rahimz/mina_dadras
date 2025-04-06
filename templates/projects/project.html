@@ -9,62 +9,74 @@
 
 {% block content %}
 
-  <div class="row">
+<div class="row">
     <div class="col">
-      <a class="black-link" href="{% url 'projects:projects' %}">{% trans "Projects" %}</a> /
-      <a class="black-link" href="{{ project.category.get_absolute_url }}">{{ project.category }}</a> /
-      <span class="text-muted">{{ project.title }}</span>
+        <a class="black-link" href="{% url 'projects:projects' %}">{% trans "Projects" %}</a> /
+        <a class="black-link" href="{{ project.category.get_absolute_url }}">{{ project.category }}</a> /
+        <span class="text-muted">{{ project.title }}</span>
     </div>
-  </div>
-  <div class="row my-5">
+</div>
+<div class="row my-5">
     <h1>{{ project.title }}</h1>
     {% for attach in project.attachments.all %}
+
+    <!-- for project that are all images -->
     {% if project.type == 'image' %}
     <div class="col-md-6 my-2">
-      {% include "projects/_show_attachment.html" %}
+        {% include "projects/_show_attachment.html" %}
     </div>
 
     {% else %}
-    <div class="col-md-12 d-flex">
-      {% if attach.attach_type == 'image' %}
-      <div class="my-4 ">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal{{ attach.id }}">
-          <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">
-        </button>
-      </div>
-      {% else %}
+    <div class="col-md-12 d-flex justify-content-center">
+        {% if attach.attach_type == 'image' %}
+        <div class="my-4 w-100">            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-link mt-4 " data-bs-toggle="modal" data-bs-target="#exampleModal{{ attach.id }}">
+                <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">
+            </button>
+            {% if attach.url %}
+            <div class="row text-center my-4">
+                <div class="col">
+                    <a class="under-img-button" href="{{ attach.url }}">{{ attach.url_title }}</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        {% else %}
+
         {% include "projects/_show_attachment.html" %}
-      {% endif %}
+
+        {% endif %}
     </div>
     {% endif %}
 
     {% if attach.file and attach.attach_type == 'image' %}
     <!-- Modal -->
     <div class="modal fade" id="exampleModal{{ attach.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ attach.title }}</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-            <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">
-            {% if attach.text %}
-            <p>{{ attach.text }}</p>
-            {% endif %}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ attach.title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">
+                    {% if attach.text %}
+                    <p>{{ attach.text }}</p>
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     {% endif %}
 
     {% endfor %}
-  </div>
+</div>
 
 
 {% endblock content %}
