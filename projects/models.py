@@ -141,6 +141,11 @@ class Attachement(TimeStampedModel):
         null=True,
         blank=True,
     )
+    url_title = models.CharField(
+        max_length=150,
+        null=True,
+        blank=True
+    )
     script = models.TextField(
         _("Script"),
         null=True,
