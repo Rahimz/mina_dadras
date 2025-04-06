@@ -45,7 +45,7 @@ def ProjectDetailsView(request, slug):
     )
 
 def ProjectCategoriesView(request, slug):
-    category = Category.objects.filter(slug=slug)
+    category = Category.objects.filter(slug=slug, project__active=True)
     
     context = dict(
         page_title=_("Category"),
