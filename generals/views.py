@@ -9,7 +9,7 @@ from .models import About, Social
 def HomeView(request):
     url = 'generals/home.html'
         
-    projects = Project.objects.all()
+    projects = Project.objects.filter(active=True)
 
     context = dict(
         page_title=_("Home"),
