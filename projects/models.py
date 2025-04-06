@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 import uuid 
 from django.urls import reverse
+from django.core.validators import RegexValidator
 
 from tools.models import TimeStampedModel
 
@@ -90,6 +91,7 @@ class Attachement(TimeStampedModel):
         LINK = 'link', _("Link")
         VIDEOFILE = 'video_file', _("Video file")   
         SCRIPT = 'script', _("Script")
+        QUOTE = 'quote', _("Quote")
     
     project = models.ForeignKey(
         Project,
@@ -147,7 +149,33 @@ class Attachement(TimeStampedModel):
     attachment_order = models.PositiveSmallIntegerField(
         _("Attachment order"),
         default=1,
-    )   
+    )
+    color = models.CharField(
+        _("Color"),
+        max_length=7,
+        blank=True,
+        default='#000000',
+        validators=[
+            RegexValidator(
+                regex='^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$',
+                message='Enter a valid hex color code (e.g., #RRGGBB)',
+                code='invalid_color'
+            ),
+        ]
+    )
+    background_color = models.CharField(
+        _("Backgroun color"),
+        max_length=7,
+        blank=True,
+        default='#FFFFFF',
+        validators=[
+            RegexValidator(
+                regex='^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$',
+                message='Enter a valid hex color code (e.g., #RRGGBB)',
+                code='invalid_color'
+            ),
+        ]
+    )
     
     
     active = models.BooleanField(

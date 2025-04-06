@@ -4,7 +4,14 @@
 body {
     font-family: 'Open Sans', sans-serif; /* Apply the font to the body */
 }
-
+/* change empty space on main container in desktop */
+@media (min-width: 992px) {
+    .container-custom {
+        --bs-gutter-x: 5rem; /* Increases side spacing */
+        padding-left: calc(var(--bs-gutter-x) * 1.5) !important;
+        padding-right: calc(var(--bs-gutter-x) * 1.5) !important;
+    }
+}
 .image-container {
     position: relative; /* Position relative to contain the overlay */
     overflow: hidden; /* Hide overflow */
