@@ -105,3 +105,12 @@ body {
 .black-link:hover {
     color: darkgray; /* Optional: change color on hover */
 }
+
+/* Small screens (≥576px) */
+@media (max-width: 576px) {
+    .quote {
+        font-size: 1.0rem;
+        padding: 20px 25px; /* Slightly larger padding */
+        margin: 20px 25px; /* Slightly larger margin */
+    }
+}
