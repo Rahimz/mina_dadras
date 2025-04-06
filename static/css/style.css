@@ -9,6 +9,8 @@ body {
     position: relative; /* Position relative to contain the overlay */
     overflow: hidden; /* Hide overflow */
     height: 400px; /* Set a fixed height */
+    border: 1px solid black;
+    border-radius: 25px;
 }
 
 .project-image {    
