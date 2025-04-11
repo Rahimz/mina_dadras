@@ -69,6 +69,24 @@ body {
     box-shadow: none; /* remove shadow on hover */
   }
 
+.under-img-button-light {
+    color: white;
+    background: black;
+    border: 1px solid white;
+    border-radius: 0; /* corner without border */
+    box-shadow: 2px 2px 0 white; /* two pixel bottom and right black shadow without smooth */
+    padding: 8px 16px; /* adjust as needed */
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s; /* smooth color transition */
+    text-decoration: none;
+  }
+  
+.under-img-button-light:hover {
+    background: white;
+    color: black;
+    box-shadow: none; /* remove shadow on hover */
+  }
+
 .text {
     color: white; /* Text color */
     font-size: 2.5rem; /* Font size */
@@ -113,4 +131,13 @@ body {
         padding: 20px 25px; /* Slightly larger padding */
         margin: 20px 25px; /* Slightly larger margin */
     }
+}
+
+.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }

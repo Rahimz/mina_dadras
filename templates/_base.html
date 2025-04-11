@@ -24,6 +24,10 @@
     <div class="container">
     {% include "_header.html" %}
     {% include '_messages.html' %}
+
+    {% if nav == 'home' %}
+      
+    {% endif %}
     
     <div class="container-lg container-custom">
         {% block content %}

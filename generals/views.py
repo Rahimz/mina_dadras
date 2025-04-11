@@ -15,6 +15,7 @@ def HomeView(request):
         page_title=_("Home"),
         nav='home',
         projects=projects,
+        about=About.objects.last()
     )
     # if not request.user.is_authenticated:
     #     url = 'generals/construction.html'
