@@ -10,7 +10,7 @@ def ProjectsView(request):
     attachments = Attachement.objects.filter(cover=True)
     categories = (
         Category.objects
-        .filter(parent__isnull=True)
+        # .filter(parent__isnull=True)
         .annotate(project_count=Count('projects', filter=Q(projects__active=True)))
         .filter(project_count__gt=0)
         .prefetch_related(
