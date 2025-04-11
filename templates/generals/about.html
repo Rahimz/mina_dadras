@@ -9,25 +9,98 @@
 
 {% block content %}
 
-  <div class="row my-5">
-    <div class="row">
-      <div class="col-md-5">
-        <img src="{{ about.image.url }}" alt="mina dadras" width="100%" height="auto">
-      </div>
-      <div class="col-md-7">
-        {% if about %}
-        <p>{{ about.about | safe | linebreaksbr }}</p>
+<div class="row my-5">
+    <div class="col">
+        {% if about.title_about %}
+        <h1>{{ about.title_about }}</h1>
         {% endif %}
-        <div class="mt-5">
-          {% for social in socials %}
-          <a href="{{ social.url }}" class="black-link me-3">
-            <img src="{{ social.image.url }}" alt="{{ social.name }}" width="40px" height="auto">
-          </a>
-          {% endfor %}
-        </div>
-
-      </div>
     </div>
-  </div>
+    <div class="row">
+        <div class="col-md-5">
+            <img src="{{ about.image.url }}" alt="mina dadras" width="100%" height="auto">
+        </div>
+        <div class="col-md-7 ">
+            {% if about %}
+            <div class="mx-3">
+                <p>{{ about.about | safe | linebreaksbr }}</p>
+            </div>
+            {% endif %}
+            {% if about.cv_file %}
+              <a href="{{ aboutn.addition_file.url }}" download target="_blank" class="under-img-button">
+                {% if about.cv_file_button %}
+                  {{ about.cv_file_button}}
+                {% else %}
+                    file
+                {% endif %}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row my-5">
+    <div class="col">
+        {% if about.title_addition %}
+        <h1>{{ about.title_addition }}</h1>
+        {% endif %}
+    </div>
+    <div class="row">        
+        <div class="col-md-7 ">
+            {% if about.addition %}
+            <div class="mx-3">
+                <p>{{ about.addition | safe | linebreaksbr }}</p>
+            </div>
+            {% endif %}
+            {% if about.addition_file %}
+              <a href="{{ aboutn.addition_file.url }}" download target="_blank" class="under-img-button">
+                {% if about.addition_file_button %}
+                  {{ about.addition_file_button}}
+                {% else %}
+                    file
+                {% endif %}
+                </a>
+            {% endif %}
+        </div>
+        {% if about.addition_image %}          
+        <div class="col-md-5">
+            <img src="{{ about.addition_image.url }}" alt="mina dadras" width="100%" height="auto">
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row my-5">
+    <div class="col">
+        {% if about.title_contact %}
+        <h1>{{ about.title_contact }}</h1>
+        {% endif %}
+    </div>
+    <div class="row">        
+        <div class="col-md-7 ">
+            {% if about.contact %}
+            <div class="mx-3">
+                <p>{{ about.contact | safe | linebreaksbr }}</p>
+            </div>
+            {% endif %}
+            <div class="mt-5">
+                {% for social in socials %}
+                <a href="{{ social.url }}" class="black-link me-3">
+                    <img src="{{ social.image.url }}" alt="{{ social.name }}" width="40px" height="auto">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% if about.contact_image %}          
+        <div class="col-md-5">
+            <img src="{{ about.contact_image.url }}" alt="mina dadras" width="100%" height="auto">
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+           
+
 
 {% endblock content %}

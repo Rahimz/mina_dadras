@@ -42,6 +42,12 @@ class About(TimeStampedModel):
         _("Additional skils"),
         blank=True
     )
+    addition_image = models.ImageField(
+        _("Addition image"),
+        upload_to='about/',
+        null=True,
+        blank=True
+    )
     addition_file = models.FileField(
         upload_to='about/',
         null=True,
@@ -60,6 +66,12 @@ class About(TimeStampedModel):
     )
     contact = models.TextField(
         _("Contact"),
+        blank=True
+    )
+    contact_image = models.ImageField(
+        _("Contact image"),
+        upload_to='about/',
+        null=True,
         blank=True
     )
     def __str__(self):
