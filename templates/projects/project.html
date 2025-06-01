@@ -32,7 +32,9 @@
         <div class="my-4 w-100">            
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-link mt-4 " data-bs-toggle="modal" data-bs-target="#exampleModal{{ attach.id }}">
-                <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">
+                {% if attach.file %}
+                <img src="{{ attach.file.url }}" alt="" width="100%" height="auto">                  
+                {% endif %}
             </button>
             {% if attach.url %}
             <div class="row text-center my-4">
